@@ -15,3 +15,25 @@ Running the program requires Rust v1.69+. This will output a JSON list of the bl
 ```bash
 cargo run
 ```
+
+## Data
+
+Lists of words are located in [data](data) folder.
+
+Words are transformed to include these mutations:
+
+- `i` → `1`
+- `l` → `1`
+- `o` → `0`
+
+So, if the blacklist contains the word "low", it will also contain these variations: "l0w", "1ow" and "10w".
+
+Other character replacements are not included because they're not that obvious when mixed in IDs.
+
+Sqids ID matching that will cause a re-run (in order):
+
+1. If the blacklisted word is <= 3 characters long, it has to match exactly
+1. If the word has numbers, then match will happen only if ID starts or ends with that mutated word
+1. Otherwise, only if the word is a substring of ID
+
+Most common matches are from 4 letter words.

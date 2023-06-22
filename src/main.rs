@@ -21,6 +21,8 @@ fn main() {
 		.filter_map(|v| if v.len() >= min_length { Some(v.to_lowercase()) } else { None })
 		.collect();
 
+	data = utils::filter_to_common_bases(&data);
+
 	let mut leet = vec![];
 	for word in data.iter() {
 		leet.append(&mut utils::get_leet_variations(word));
