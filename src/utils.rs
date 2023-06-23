@@ -10,10 +10,7 @@ const DATA_ES: &str = include_str!("../data/es.json");
 const DATA_FR: &str = include_str!("../data/fr.json");
 const DATA_HI: &str = include_str!("../data/hi.json");
 const DATA_IT: &str = include_str!("../data/it.json");
-const DATA_NL: &str = include_str!("../data/nl.json");
-const DATA_NO: &str = include_str!("../data/no.json");
 const DATA_PT: &str = include_str!("../data/pt.json");
-const DATA_RO: &str = include_str!("../data/ro.json");
 
 pub fn get_data() -> Result<Vec<String>> {
 	let mut data: Vec<String> = serde_json::from_str(DATA_DE)?;
@@ -23,10 +20,7 @@ pub fn get_data() -> Result<Vec<String>> {
 	data.append(&mut serde_json::from_str(DATA_FR)?);
 	data.append(&mut serde_json::from_str(DATA_HI)?);
 	data.append(&mut serde_json::from_str(DATA_IT)?);
-	data.append(&mut serde_json::from_str(DATA_NL)?);
-	data.append(&mut serde_json::from_str(DATA_NO)?);
 	data.append(&mut serde_json::from_str(DATA_PT)?);
-	data.append(&mut serde_json::from_str(DATA_RO)?);
 
 	Ok(data)
 }
