@@ -12,17 +12,28 @@ const DATA_HI: &str = include_str!("../data/hi.json");
 const DATA_IT: &str = include_str!("../data/it.json");
 const DATA_PT: &str = include_str!("../data/pt.json");
 
-pub fn get_data() -> Result<Vec<String>> {
-	let mut data: Vec<String> = serde_json::from_str(DATA_DE)?;
+pub fn get_data() -> Result<HashMap<String, Vec<String>>> {
+	let mut ret: HashMap<String, Vec<String>> = HashMap::new();
 
-	data.append(&mut serde_json::from_str(DATA_EN)?);
-	data.append(&mut serde_json::from_str(DATA_ES)?);
-	data.append(&mut serde_json::from_str(DATA_FR)?);
-	data.append(&mut serde_json::from_str(DATA_HI)?);
-	data.append(&mut serde_json::from_str(DATA_IT)?);
-	data.append(&mut serde_json::from_str(DATA_PT)?);
+	ret.insert("de".to_string(), serde_json::from_str(DATA_DE)?);
+	ret.insert("en".to_string(), serde_json::from_str(DATA_EN)?);
+	ret.insert("es".to_string(), serde_json::from_str(DATA_ES)?);
+	ret.insert("fr".to_string(), serde_json::from_str(DATA_FR)?);
+	ret.insert("hi".to_string(), serde_json::from_str(DATA_HI)?);
+	ret.insert("it".to_string(), serde_json::from_str(DATA_IT)?);
+	ret.insert("pt".to_string(), serde_json::from_str(DATA_PT)?);
 
-	Ok(data)
+	let mut all: Vec<String> = vec![];
+	all.append(&mut serde_json::from_str(DATA_DE)?);
+	all.append(&mut serde_json::from_str(DATA_EN)?);
+	all.append(&mut serde_json::from_str(DATA_ES)?);
+	all.append(&mut serde_json::from_str(DATA_FR)?);
+	all.append(&mut serde_json::from_str(DATA_HI)?);
+	all.append(&mut serde_json::from_str(DATA_IT)?);
+	all.append(&mut serde_json::from_str(DATA_PT)?);
+	ret.insert("blacklist".to_string(), all);
+
+	Ok(ret)
 }
 
 pub fn filter_to_common_bases(words: &[String]) -> Vec<String> {
