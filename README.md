@@ -1,16 +1,16 @@
-# [Sqids](https://sqids.org/) Blacklist
+# [Sqids](https://sqids.org/) Blocklist
 
-[![Github Actions](https://img.shields.io/github/actions/workflow/status/sqids/sqids-blacklist/tests.yml?style=flat-square)](https://github.com/sqids/sqids-blacklist/actions)
+[![Github Actions](https://img.shields.io/github/actions/workflow/status/sqids/sqids-blocklist/tests.yml?style=flat-square)](https://github.com/sqids/sqids-blocklist/actions)
 
 > 🏗️ This is still a work in progress. Do not use in production.
 
-This repository is used to manage the default Sqids blacklist.
+This repository is used to manage the default Sqids blocklist.
 
 It contains carefully chosen words that might not be appropriate to accidentally show up in auto-generated Sqids IDs.
 
 ## Get started
 
-Running the program requires Rust v1.69+. This will output a JSON list of the blacklist:
+Running the program requires Rust v1.69+. This will output a JSON list of the blocklist:
 
 ```bash
 cargo run
@@ -26,13 +26,13 @@ Words are transformed to include these mutations:
 - `l` → `1`
 - `o` → `0`
 
-So, if the blacklist contains the word "low", it will also contain these variations: "l0w", "1ow" and "10w".
+So, if the blocklist contains the word "low", it will also contain these variations: "l0w", "1ow" and "10w".
 
 Other character replacements are not included because they're not that obvious when mixed in IDs.
 
 Sqids ID matching that will cause a re-run (in order):
 
-1. If the blacklisted word is <= 3 characters long, it has to match exactly
+1. If the blocklisted word is <= 3 characters long, it has to match exactly
 1. If the word has numbers, then match will happen only if ID starts or ends with that mutated word
 1. Otherwise, only if the word is a substring of ID
 
