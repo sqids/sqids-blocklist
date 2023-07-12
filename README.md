@@ -2,15 +2,13 @@
 
 [![Github Actions](https://img.shields.io/github/actions/workflow/status/sqids/sqids-blocklist/tests.yml?style=flat-square)](https://github.com/sqids/sqids-blocklist/actions)
 
-> 🏗️ This is still a work in progress. Do not use in production.
-
 This repository is used to manage the default Sqids blocklist.
 
 It contains carefully chosen words that might not be appropriate to accidentally show up in auto-generated Sqids IDs.
 
 ## Get started
 
-Running the program requires Rust v1.69+. This will output a JSON list of the blocklist:
+Running the program requires Rust v1.69+. The following will output a complete JSON blocklist. You can also copy it from the [output](output) folder.
 
 ```bash
 cargo run
