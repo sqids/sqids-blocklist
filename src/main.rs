@@ -1,36 +1,38 @@
-use std::process;
+use std::fs::File;
+use std::io::Write;
 
 mod utils;
 
 fn main() {
 	let min_length: usize = 3;
 
-	let mut data;
-	match utils::get_data() {
-		Ok(d) => {
-			data = d;
+	let dataset = utils::get_data().expect("Could not fetch data");
+	dataset.iter().for_each(|(language, data)| {
+		let mut data: Vec<String> = data
+			.into_iter()
+			.filter_map(|v| if v.len() >= min_length { Some(v.to_lowercase()) } else { None })
+			.collect();
+
+		data = utils::filter_to_common_bases(&data);
+
+		let mut leet: Vec<String> = vec![];
+		for word in data.iter() {
+			leet.append(&mut utils::get_leet_variations(word));
 		}
-		Err(e) => {
-			println!("Could not fetch data: {e}");
-			process::exit(1);
+		data.append(&mut leet);
+
+		data.sort_unstable();
+		data.dedup();
+
+		match File::create(format!("output/{}.json", language)) {
+			Err(e) => eprintln!("{}", e),
+			Ok(mut f) => {
+				let _ = f.write_all(serde_json::to_string(&data).unwrap().as_bytes());
+			}
 		}
-	}
 
-	data = data
-		.into_iter()
-		.filter_map(|v| if v.len() >= min_length { Some(v.to_lowercase()) } else { None })
-		.collect();
-
-	data = utils::filter_to_common_bases(&data);
-
-	let mut leet = vec![];
-	for word in data.iter() {
-		leet.append(&mut utils::get_leet_variations(word));
-	}
-	data.append(&mut leet);
-
-	data.sort_unstable();
-	data.dedup();
-
-	println!("{}", serde_json::to_string(&data).unwrap());
+		if language == "blacklist" {
+			println!("{}", serde_json::to_string(&data).unwrap());
+		}
+	});
 }
