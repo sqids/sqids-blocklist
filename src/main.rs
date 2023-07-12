@@ -1,5 +1,4 @@
-use std::fs::File;
-use std::io::Write;
+use std::{fs::File, io::Write};
 
 mod utils;
 
@@ -9,7 +8,7 @@ fn main() {
 	let dataset = utils::get_data().expect("Could not fetch data");
 	dataset.iter().for_each(|(language, data)| {
 		let mut data: Vec<String> = data
-			.into_iter()
+			.iter()
 			.filter_map(|v| if v.len() >= min_length { Some(v.to_lowercase()) } else { None })
 			.collect();
 
@@ -31,7 +30,7 @@ fn main() {
 			}
 		}
 
-		if language == "blacklist" {
+		if language == "blocklist" {
 			println!("{}", serde_json::to_string(&data).unwrap());
 		}
 	});

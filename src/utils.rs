@@ -31,7 +31,7 @@ pub fn get_data() -> Result<HashMap<String, Vec<String>>> {
 	all.append(&mut serde_json::from_str(DATA_HI)?);
 	all.append(&mut serde_json::from_str(DATA_IT)?);
 	all.append(&mut serde_json::from_str(DATA_PT)?);
-	ret.insert("blacklist".to_string(), all);
+	ret.insert("blocklist".to_string(), all);
 
 	Ok(ret)
 }

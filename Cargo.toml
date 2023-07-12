@@ -9,5 +9,5 @@ readme = "README.md"
 
 [dependencies]
 serde = "1.0.171"
-serde_json = "1.0.100"
+serde_json = "1.0.102"
 eyre = "0.6.8"
