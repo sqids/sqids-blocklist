@@ -9,6 +9,7 @@ const DATA_EN: &str = include_str!("../data/en.json");
 const DATA_ES: &str = include_str!("../data/es.json");
 const DATA_FR: &str = include_str!("../data/fr.json");
 const DATA_HI: &str = include_str!("../data/hi.json");
+const DATA_ID: &str = include_str!("../data/id.json");
 const DATA_IT: &str = include_str!("../data/it.json");
 const DATA_PT: &str = include_str!("../data/pt.json");
 
@@ -20,6 +21,7 @@ pub fn get_data() -> Result<HashMap<String, Vec<String>>> {
 	ret.insert("es".to_string(), serde_json::from_str(DATA_ES)?);
 	ret.insert("fr".to_string(), serde_json::from_str(DATA_FR)?);
 	ret.insert("hi".to_string(), serde_json::from_str(DATA_HI)?);
+	ret.insert("id".to_string(), serde_json::from_str(DATA_ID)?);
 	ret.insert("it".to_string(), serde_json::from_str(DATA_IT)?);
 	ret.insert("pt".to_string(), serde_json::from_str(DATA_PT)?);
 
@@ -29,6 +31,7 @@ pub fn get_data() -> Result<HashMap<String, Vec<String>>> {
 	all.append(&mut serde_json::from_str(DATA_ES)?);
 	all.append(&mut serde_json::from_str(DATA_FR)?);
 	all.append(&mut serde_json::from_str(DATA_HI)?);
+	all.append(&mut serde_json::from_str(DATA_ID)?);
 	all.append(&mut serde_json::from_str(DATA_IT)?);
 	all.append(&mut serde_json::from_str(DATA_PT)?);
 	ret.insert("blocklist".to_string(), all);
