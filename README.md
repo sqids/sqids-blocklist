@@ -14,6 +14,12 @@ Running the program requires Rust v1.69+. The following will output a complete J
 cargo run
 ```
 
+## Adding or Adjusting Data
+
+**If you'd like to add a list or adjust a list, please submit PRs to the `next` branch.**
+
+The `main` branch is frozen for this version of Sqids.
+
 ## Data
 
 Lists of words are located in [data](data) folder.
