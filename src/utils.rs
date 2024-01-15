@@ -60,7 +60,7 @@ pub fn filter_to_common_bases(words: &[String]) -> Vec<String> {
 }
 
 pub fn get_leet_variations(word: &str) -> Vec<String> {
-	let replacements = HashMap::from([('o', '0'), ('l', '1'), ('i', '1')]);
+	let replacements = HashMap::from([('o', '0'), ('l', '1'), ('i', '1'), ('s', '5')]);
 
 	let init = word.to_string();
 	let mut all = vec![init.chars().collect::<Vec<_>>()];
